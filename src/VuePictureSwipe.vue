@@ -15,6 +15,7 @@
           v-if="item.htmlAfterThumbnail"
           :template="item.htmlAfterThumbnail"
         />
+
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
           :href="item.src"
@@ -22,7 +23,13 @@
           :data-size="`${item.w}x${item.h}`"
           :title="item.title"
         >
-          <img :src="item.thumbnail" :alt="item.alt" itemprop="thumbnail" />
+          <img
+            :src="item.thumbnail"
+            :alt="item.alt"
+            itemprop="thumbnail"
+            class="wrapperA"
+            style="height:120px;"
+          />
         </a>
       </figure>
     </div>
@@ -85,5 +92,13 @@ export default {
 .gallery-thumbnail {
   display: inline;
   margin: 5px;
+}
+
+.wrapperA {
+  width: 400px;
+  height: 200px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
 }
 </style>
