@@ -27,8 +27,7 @@
             :src="item.thumbnail"
             :alt="item.alt"
             itemprop="thumbnail"
-            class="wrapperA"
-            style="height:120px;"
+            style="height:120px;width:120px;"
           />
         </a>
       </figure>
@@ -92,13 +91,5 @@ export default {
 .gallery-thumbnail {
   display: inline;
   margin: 5px;
-}
-
-.wrapperA {
-  width: 400px;
-  height: 200px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center center;
 }
 </style>
