@@ -12,8 +12,8 @@
         :src="item.src"
       >
         <render-html
-          v-if="item.htmlAfterThumbnail"
-          :template="item.htmlAfterThumbnail"
+          v-if="item.htmlBeforeThumbnail"
+          :template="item.htmlBeforeThumbnail"
         />
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
