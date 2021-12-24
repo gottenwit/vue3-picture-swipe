@@ -15,7 +15,6 @@
           v-if="item.htmlAfterThumbnail"
           :template="item.htmlAfterThumbnail"
         />
-
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
           :href="item.src"
@@ -30,6 +29,10 @@
             style="height:120px;width:120px;"
           />
         </a>
+        <render-html
+          v-if="item.htmlAfterThumbnail"
+          :template="item.htmlAfterThumbnail"
+        />
       </figure>
     </div>
 
@@ -62,8 +65,7 @@ export default {
           thumbnail: "http://via.placeholder.com/64x64",
           w: 0,
           h: 0,
-          htmlAfterThumbnail:
-            "<a href='#' style='color: red;'><span class='glyphicon glyphicon-remove'></span></a>",
+          htmlAfterThumbnail: "<button>X</button>",
         },
       ],
       type: Array,
