@@ -11,6 +11,10 @@
         itemtype="http://schema.org/ImageObject"
         :src="item.src"
       >
+        <render-html
+          v-if="item.htmlAfterThumbnail"
+          :template="item.htmlAfterThumbnail"
+        />
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
           :href="item.src"
@@ -20,65 +24,66 @@
         >
           <img :src="item.thumbnail" :alt="item.alt" itemprop="thumbnail" />
         </a>
-        <render-html v-if="item.htmlAfterThumbnail" :template="item.htmlAfterThumbnail" />
       </figure>
     </div>
 
-    <photo-swipe-component v-if="defaultStructure" :options="options"></photo-swipe-component>
+    <photo-swipe-component
+      v-if="defaultStructure"
+      :options="options"
+    ></photo-swipe-component>
   </div>
 </template>
 
 <script>
-import PhotoSwipeComponent from './PhotoSwipeComponent.vue';
-import RenderHtml from './RenderHtml.vue';
+import PhotoSwipeComponent from "./PhotoSwipeComponent.vue";
+import RenderHtml from "./RenderHtml.vue";
 
 export default {
-  components: {PhotoSwipeComponent, RenderHtml},
+  components: { PhotoSwipeComponent, RenderHtml },
   props: {
     items: {
       default: [
         {
-          src: 'http://via.placeholder.com/600x400',
-          thumbnail: 'http://via.placeholder.com/64x64',
+          src: "http://via.placeholder.com/600x400",
+          thumbnail: "http://via.placeholder.com/64x64",
           w: 0,
           h: 0,
-          alt: 'some numbers on a grey background',
-          htmlAfterThumbnail: '<span class="photos-date">29.12.2021</span>'
+          alt: "some numbers on a grey background",
+          htmlAfterThumbnail: '<span class="photos-date">29.12.2021</span>',
         },
         {
-          src: 'http://via.placeholder.com/1200x900',
-          thumbnail: 'http://via.placeholder.com/64x64',
+          src: "http://via.placeholder.com/1200x900",
+          thumbnail: "http://via.placeholder.com/64x64",
           w: 0,
           h: 0,
-          htmlAfterThumbnail: ''
-        }
+          htmlAfterThumbnail:
+            "<a href='#' style='color: red;'><span class='glyphicon glyphicon-remove'></span></a>",
+        },
       ],
-      type: Array
+      type: Array,
     },
     options: {
       default: () => ({}),
-      type: Object
+      type: Object,
     },
     singleThumbnail: {
       type: Boolean,
-      default: false
+      default: false,
     },
     nbThumbnailsDisplayed: {
       default: -1,
-      type: Number
+      type: Number,
     },
     defaultStructure: {
       type: Boolean,
-      default: true
-    }
-  }
+      default: true,
+    },
+  },
 };
-
 </script>
 <style scoped>
-  .gallery-thumbnail {
-    display: inline;
-    margin: 5px;
-  }
+.gallery-thumbnail {
+  display: inline;
+  margin: 5px;
+}
 </style>
-
