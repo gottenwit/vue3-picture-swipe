@@ -5,16 +5,15 @@
         v-for="(item, index) in items"
         v-show="index === 0 || !singleThumbnail"
         :key="index"
-        class="gallery-thumbnail"
+        class="wrapperA"
         itemprop="associatedMedia"
         itemscope
         itemtype="http://schema.org/ImageObject"
         :src="item.src"
       >
-        <render-html
-          v-if="item.htmlBeforeThumbnail"
-          :template="item.htmlBeforeThumbnail"
-        />
+        <figcaption itemprop="caption description">
+          <render-html v-if="item.figcaption" :template="item.figcaption" />
+        </figcaption>
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
           :href="item.src"
@@ -58,14 +57,15 @@ export default {
           w: 0,
           h: 0,
           alt: "some numbers on a grey background",
-          htmlAfterThumbnail: '<span class="photos-date">29.12.2021</span>',
+          figcaption: "ทดสอบ",
         },
         {
           src: "http://via.placeholder.com/1200x900",
           thumbnail: "http://via.placeholder.com/64x64",
           w: 0,
           h: 0,
-          htmlAfterThumbnail: "<button>X</button>",
+          figcaption:
+            "<a href='#' style='color: red;' onclick=event.stopPropagation();alert(1);>X</a>",
         },
       ],
       type: Array,
@@ -93,5 +93,31 @@ export default {
 .gallery-thumbnail {
   display: inline;
   margin: 5px;
+}
+
+.my-gallery {
+  width: 100%;
+  float: left;
+}
+.my-gallery img {
+  width: 100%;
+  height: auto;
+}
+.my-gallery figure {
+  display: block;
+  float: left;
+  margin: 0 5px 5px 0;
+  width: 150px;
+}
+.my-gallery figcaption {
+  /*display: none;*/
+}
+
+.wrapperA {
+  width: 400px;
+  height: 200px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
 }
 </style>
