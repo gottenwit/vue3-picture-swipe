@@ -11,8 +11,8 @@
         itemtype="http://schema.org/ImageObject"
         :src="item.src"
       >
-        <figcaption itemprop="caption description" v-html="item.figcaption">
-          <!-- <render-html v-if="item.figcaption" :template="item.figcaption" /> -->
+        <figcaption itemprop="caption description">
+          <render-html v-if="item.figcaption" :template="item.figcaption" />
         </figcaption>
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
