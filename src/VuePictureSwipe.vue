@@ -11,12 +11,12 @@
         itemtype="http://schema.org/ImageObject"
         :src="item.src"
       >
-        <figcaption itemprop="caption description">
-          <v-runtime-template
-            v-if="item.figcaption"
-            :template="item.figcaption"
-          ></v-runtime-template>
-        </figcaption>
+        <figcaption
+          itemprop="caption description"
+          v-if="item.figcaption"
+          :template="item.figcaption"
+          @click="item.functionstring"
+        ></figcaption>
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
           :href="item.src"
