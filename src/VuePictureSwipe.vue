@@ -11,14 +11,11 @@
         itemtype="http://schema.org/ImageObject"
         :src="item.src"
       >
-        <figcaption itemprop="caption description" v-if="item.functionstring">
-          <button
-            type="button"
-            class="btn-close"
-            aria-label="Close"
-            @click="item.functionstring"
-          ></button>
-        </figcaption>
+        <figcaption
+          itemprop="caption description"
+          v-if="item.figcaption"
+          :template="item.figcaption"
+        ></figcaption>
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
           :href="item.src"
@@ -51,9 +48,8 @@
 <script>
 import PhotoSwipeComponent from "./PhotoSwipeComponent.vue";
 import RenderHtml from "./RenderHtml.vue";
-import VRuntimeTemplate from "vue3-runtime-template";
 export default {
-  components: { PhotoSwipeComponent, RenderHtml, VRuntimeTemplate },
+  components: { PhotoSwipeComponent, RenderHtml },
   props: {
     items: {
       default: [
