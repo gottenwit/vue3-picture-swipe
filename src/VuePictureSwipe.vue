@@ -120,9 +120,6 @@ export default {
   margin: 0 5px 5px 0;
   width: 150px;
 }
-.my-gallery figcaption {
-  /*display: none;*/
-}
 
 .wrapperA {
   width: 400px;
