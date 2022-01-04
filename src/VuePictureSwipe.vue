@@ -11,11 +11,9 @@
         itemtype="http://schema.org/ImageObject"
         :src="item.src"
       >
-        <figcaption
-          itemprop="caption description"
-          v-if="item.figcaption"
-          :template="item.figcaption"
-        ></figcaption>
+        <figcaption itemprop="caption description" v-if="item.figcaption">
+          {{ item.figcaption }}
+        </figcaption>
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
           :href="item.src"
