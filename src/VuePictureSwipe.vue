@@ -12,7 +12,7 @@
         :src="item.src"
       >
         <figcaption itemprop="caption description" v-if="item.figcaption">
-          {{ item.figcaption }}
+          <render-html v-if="item.figcaption" :template="item.figcaption" />
         </figcaption>
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
