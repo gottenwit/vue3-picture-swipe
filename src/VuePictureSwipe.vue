@@ -12,7 +12,10 @@
         :src="item.src"
       >
         <figcaption itemprop="caption description">
-          <render-html v-if="item.figcaption" :template="item.figcaption" />
+          <v-runtime-template
+            v-if="item.figcaption"
+            :template="item.figcaption"
+          ></v-runtime-template>
         </figcaption>
         <a
           v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
@@ -26,6 +29,7 @@
             :alt="item.alt"
             itemprop="thumbnail"
             style="height:120px;width:120px;"
+            @error="onImageError"
           />
         </a>
         <render-html
@@ -45,9 +49,9 @@
 <script>
 import PhotoSwipeComponent from "./PhotoSwipeComponent.vue";
 import RenderHtml from "./RenderHtml.vue";
-
+import VRuntimeTemplate from "vue3-runtime-template";
 export default {
-  components: { PhotoSwipeComponent, RenderHtml },
+  components: { PhotoSwipeComponent, RenderHtml, VRuntimeTemplate },
   props: {
     items: {
       default: [
@@ -64,8 +68,7 @@ export default {
           thumbnail: "http://via.placeholder.com/64x64",
           w: 0,
           h: 0,
-          figcaption:
-            "<a href='#' style='color: red;' onclick=event.stopPropagation();alert(1);>X</a>",
+          figcaption: "<a href='#' style='color: red;' @click='test1()'>X</a>",
         },
       ],
       type: Array,
@@ -86,6 +89,14 @@ export default {
       type: Boolean,
       default: true,
     },
+  },
+  setup() {
+    function onImageError(event) {
+      event.target.src = require("@/src/imgnotfound.jpg");
+    }
+    return {
+      onImageError,
+    };
   },
 };
 </script>
